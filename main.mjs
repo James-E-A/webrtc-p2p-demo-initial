@@ -45,13 +45,14 @@ room.addEventListener('message', (event) => {
 const chat_box = document.createElement('form');
 chat_box.action = 'javascript:';
 chat_box.appendChild(document.createElement('input'));
-chat_box.appendChild(document.createElement('submit'));
+chat_box.appendChild(document.createElement('input')).type = 'submit';
 chat_box.addEventListener('submit', (event) => {
 	const chatMessage = event.target.elements[0].value;
 	room.postMessage({
 		type: 'chat',
 		value: chatMessage
 	});
+	event.target.elements[0].value = null;
 	showMessage(room.peerId, chatMessage);
 });
 
